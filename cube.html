@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>3D Cube with QR Code Interaction</title>
+    <title>3D Cube with three.js</title>
     <style>
         body { margin: 0; }
         canvas { display: block; }
-        #qr-reader { position: absolute; top: 0; left: 0; }
     </style>
 </head>
 <body>
-    <div id="qr-reader" style="width: 300px; height: 300px;"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
     <script>
         // Create the scene
         const scene = new THREE.Scene();
@@ -27,7 +24,7 @@
 
         // Create a cube
         const geometry = new THREE.BoxGeometry(1, 1, 2);
-        const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+        const material = new THREE.MeshBasicMaterial({ color: 0xffcdbf });
         const cube = new THREE.Mesh(geometry, material);
         scene.add(cube);
 
@@ -50,29 +47,9 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
         });
-
-        // Initialize QR Code Scanner
-        const qrCodeReader = new Html5Qrcode("qr-reader");
-
-        // Function to handle QR code scan
-        function onQRCodeScanned(qrCodeMessage) {
-            console.log("QR Code scanned: ", qrCodeMessage);
-
-            // Example action: Change cube color
-            cube.material.color.set(0xffcdbf); // Change color to peach
-        }
-
-        // Start scanning
-        qrCodeReader.start({ facingMode: "environment" }, {
-            fps: 10,
-            qrbox: 250
-        }, (decodedText) => {
-            onQRCodeScanned(decodedText);
-        }).catch((err) => {
-            console.error("Error starting QR code scanner: ", err);
-        });
     </script>
 </body>
 </html>
+
 
 
