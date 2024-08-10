@@ -18,7 +18,7 @@ class VideoWindow(QMainWindow):
         self.timer.start(30)
 
         # Load the video to play
-        self.video = cv2.VideoCapture('C:\\Users\\User 2\\Downloads\\video.mp4')
+        self.video = cv2.VideoCapture('C:\\Users\\User 2\\Downloads\\video.mp4') //link to the video
         self.play_video = False
         self.video_frame = None
 
